@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('<id>/', views.detail),
     path('<id>/delete/', views.delete),
     path('<id>/update/', views.update),
+    path('mahasiswa/cetak/', include('home.urls')),
 ]

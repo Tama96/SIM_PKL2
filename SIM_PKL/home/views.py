@@ -4,9 +4,9 @@ from mahasiswa.models import Pkl
 from catatan import models, forms
 from forum.models import Forum
 from dosen.models import Dosen
+from django.contrib.auth.decorators import login_required
 
-
-
+@login_required(login_url='/accounts/')
 def index(req):
     group = req.user.groups.first()
     tasks = models.Catatan.objects.filter(owner=req.user)
@@ -40,10 +40,12 @@ def index(req):
         
     return render(req, 'staf/index.html')
 
+@login_required(login_url='/accounts/')
 def delete_catatan(req, id):
     models.Catatan.objects.filter(pk=id).delete()
     return redirect('/')
 
+@login_required(login_url='/accounts/')
 def cetak(req):
     cetak = models.Catatan.objects.all()
     forum = Forum.objects.filter().first()

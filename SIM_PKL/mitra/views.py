@@ -3,7 +3,9 @@ from . import models, forms
 from forum.models import Forum
 from forum.forms import ForumForm
 from forum.views import detail_forum
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/accounts/')
 def index(req):
     tasks = models.Mitra.objects.all()
     form_input = forms.MitraForm()
@@ -20,7 +22,7 @@ def index(req):
         'form': form_input,
     })
 
-
+@login_required(login_url='/accounts/')
 def index_staf(req):
     tasks = models.Mitra.objects.all()
     form_input = forms.MitraForm()
@@ -37,7 +39,7 @@ def index_staf(req):
         'form': form_input,
     })
 
-
+@login_required(login_url='/accounts/')
 def new(req):
     form_input = forms.MitraForm()
 
@@ -51,7 +53,7 @@ def new(req):
         'form': form_input,
     })
 
-
+@login_required(login_url='/accounts/')
 def new_staf(req):
     form_input = forms.MitraForm()
 
@@ -65,14 +67,14 @@ def new_staf(req):
         'form': form_input,
     })
 
-
+@login_required(login_url='/accounts/')
 def detail(req, id):
     mitra = models.Mitra.objects.filter(pk=id).first()
     return render(req, 'mitra/detail.html', {
         'data': mitra,
     })
 
-
+@login_required(login_url='/accounts/')
 def detail_staf(req, id):
     mitra = models.Mitra.objects.filter(pk=id).first()
     form_input = forms.PostingForm()
@@ -94,17 +96,17 @@ def detail_staf(req, id):
         'form_balas': form_balas,
     })
 
-
+@login_required(login_url='/accounts/')
 def delete(req, id):
     models.Mitra.objects.filter(pk=id).delete()
     return redirect('/mitra/')
 
-
+@login_required(login_url='/accounts/')
 def delete_staf(req, id):
     models.Mitra.objects.filter(pk=id).delete()
     return redirect('/mitras/')
 
-
+@login_required(login_url='/accounts/')
 def update(req, id):
     if req.POST:
         mitra = models.Mitra.objects.filter(pk=id).update(
@@ -116,7 +118,7 @@ def update(req, id):
         'data': mitra,
     })
 
-
+@login_required(login_url='/accounts/')
 def update_staf(req, id):
     if req.POST:
         mitra = models.Mitra.objects.filter(pk=id).update(

@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.redirects',
     'crispy_forms',
     'bootstrap_datepicker_plus',
     'accounts',
@@ -46,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'SIM_PKL.urls'
@@ -77,9 +80,9 @@ WSGI_APPLICATION = 'SIM_PKL.wsgi.application'
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'labsos',
-        'USER': 'mohamad',
-        'PASSWORD': 'tatam123',
+        'NAME': 'labsoscoba',
+        'USER': 'tama',
+        'PASSWORD': 'tama',
         'HOST': 'localhost',
         'PORT': '',
     }
